@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type":"shell",
+            "label": "cmake",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+        },
+        {
+            "type": "shell",
+            "label": "C/C++: clang++ build active file",
+            "command": "/usr/bin/clang++",
+            "args": [
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
+                "--include-directory=${workspaceFolder}/build/_deps/googletest-src/googletest/include",
+                "-Wc++11-extensions",
+                "--include-directory=${workspaceFolder}/src",
+                "-std=c++17", 
+                "-g",
+                "${workspaceFolder}/src/*.cpp",
+                "-g",
+                "${workspaceFolder}/tests/*.cpp",
+                "${workspaceFolder}/build/lib/libgtest.a",
+                "-o",
+                "${workspaceFolder}/test_ccbb"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        }
+    ]
+}

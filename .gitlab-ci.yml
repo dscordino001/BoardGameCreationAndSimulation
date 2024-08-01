@@ -1,0 +1,22 @@
+stages:
+- build
+- test
+
+compile:
+  stage: build
+  image: amd64/gcc:12
+  script: |
+    apt-get update -y && apt-get install -y cmake
+    cmake -B build
+    cmake --build build
+  artifacts:
+    expire_in: "30 days"
+    paths:
+      - build
+
+ctest:
+  stage: test
+  image: kitware/cmake:ci-clang_cxx_modules-x86_64-2023-02-15
+  script: |
+    cd build
+    ctest
